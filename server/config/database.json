@@ -1,0 +1,10 @@
+{
+  "dev": {
+    "host": "localhost",
+    "user": "user",
+    "password": "1234",
+    "database": "note_archive",
+    "driver": "mysql",
+    "multipleStatements": true
+  }
+}

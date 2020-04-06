@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "devstart": "nodemon ./bin/www",
+    "dbcreate": "node node_modules/db-migrate/bin/db-migrate --config ./config/database_create.json db:create note_archive",
+    "migratecreate": "node node_modules/db-migrate/bin/db-migrate --config ./config/database.json create",
+    "migrateup": "node node_modules/db-migrate/bin/db-migrate up --config ./config/database.json",
+    "firststart": "node node_modules/db-migrate/bin/db-migrate --config ./config/database_create.json db:create note_archive && node node_modules/db-migrate/bin/db-migrate up --config ./config/database.json && nodemon ./bin/www",
+    "seqelizetable": "sequelize-auto -h localhost -u user -x 1234 -p 3306 -d note_archive --dialect mysql -o models/tables"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "db-migrate": "^0.11.6",
+    "db-migrate-mysql": "^2.1.1",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "sequelize-auto-v3": "^0.6.1",
+    "nodemon": "^2.0.2"
+  }
+}

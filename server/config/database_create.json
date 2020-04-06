@@ -1,0 +1,10 @@
+{
+  "defaultEnv": "local",
+  "local": {
+    "driver": "mysql",
+    "user": "user",
+    "password": "1234",
+    "host": "localhost",
+    "schema": "public"
+  }
+}
