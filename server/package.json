@@ -8,7 +8,7 @@
     "migratecreate": "node node_modules/db-migrate/bin/db-migrate --config ./config/database.json create",
     "migrateup": "node node_modules/db-migrate/bin/db-migrate up --config ./config/database.json",
     "firststart": "node node_modules/db-migrate/bin/db-migrate --config ./config/database_create.json db:create note_archive && node node_modules/db-migrate/bin/db-migrate up --config ./config/database.json && nodemon ./bin/www",
-    "seqelizetable": "sequelize-auto -h localhost -u user -x 1234 -p 3306 -d note_archive --dialect mysql -o models/tables"
+    "sequelizetable": "sequelize-auto -h localhost -u user -x 1234 -p 3306 -d note_archive --dialect mysql -o models/tables"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

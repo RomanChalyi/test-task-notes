@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('note', {
+  return sequelize.define('migrations', {
     'id': {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -10,18 +10,17 @@ module.exports = function(sequelize, DataTypes) {
       comment: "null",
       autoIncrement: true
     },
-    'title': {
-      type: DataTypes.STRING(50),
+    'name': {
+      type: DataTypes.STRING(255),
       allowNull: false,
-      defaultValue: 'none',
       comment: "null"
     },
-    'description': {
-      type: DataTypes.STRING(1000),
-      allowNull: true,
+    'run_on': {
+      type: DataTypes.DATE,
+      allowNull: false,
       comment: "null"
     }
   }, {
-    tableName: 'note'
+    tableName: 'migrations'
   });
 };

@@ -25,8 +25,15 @@ exports.up = function (db, callback) {
           primaryKey: true,
           autoIncrement: true,
         },
+        title: {
+          type: type.STRING,
+          length: 50,
+          notNull: true,
+          defaultValue: 'none',
+        },
         description: {
           type: type.STRING,
+          length: '1000',
         },
       },
       ifNotExists: true,
@@ -34,9 +41,9 @@ exports.up = function (db, callback) {
     callback
   ).then(() => {
     db.runSql(
-      `INSERT INTO note (description) values('make a test task');
-       INSERT INTO note (description) values('save the world');
-       INSERT INTO note (description) values('eat a sandwich')`,
+      `INSERT INTO note (title) values('make a test task');
+       INSERT INTO note (title) values('save the world');
+       INSERT INTO note (title) values('eat a sandwich')`,
       [],
       callback
     );
