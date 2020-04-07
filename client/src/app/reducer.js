@@ -1,8 +1,9 @@
-import { LOADING_START, LOADING_END } from './types';
+import { LOADING_START, LOADING_END, SHOW_ERROR_MESSAGE, HIDE_ERROR_MESSAGE } from './types';
 
 export const initialState = {
   isLoading: false,
   isError: false,
+  errorInfo: '',
 };
 
 const statuses = (state = initialState, action) => {
@@ -12,6 +13,12 @@ const statuses = (state = initialState, action) => {
     }
     case LOADING_END: {
       return { ...state, isLoading: false };
+    }
+    case SHOW_ERROR_MESSAGE: {
+      return { ...state, isError: true, errorInfo: action.payload };
+    }
+    case HIDE_ERROR_MESSAGE: {
+      return { ...state, isError: false, isError: '' };
     }
     default: {
       return state;
