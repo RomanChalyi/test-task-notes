@@ -28,6 +28,7 @@ exports.up = function (db, callback) {
         title: {
           type: type.STRING,
           length: 50,
+          notNull: true,
           defaultValue: 'none',
         },
         description: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Box, Switch } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import { footer, footerText } from './footer.module.scss';
 
 export default function ButtonAppBar() {

@@ -4,25 +4,34 @@ import { ListItem, Divider, ListItemText, IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const Notes = ({ note }) => {
+const Notes = ({ note, deleteTournament }) => {
   const { title, id } = note;
   const history = useHistory();
   const handleClick = () => history.push(`/details/${id}`);
-  const handleOpenEditNote = () => history.push(`/event/${id}`);
-  const handleDeleteNote = () => {};
+  const handleOpenEditNote = () => history.push(`/edit/${id}`);
+  const handleDeleteNote = () => {
+    deleteTournament(id);
+  };
 
   return (
     <>
-      <Divider />
       <ListItem button>
-        <ListItemText onClick={handleClick} primary={title} />
+        <ListItemText
+          style={{
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}
+          onClick={handleClick}
+          primary={title}
+        />
         <IconButton color="primary" onClick={handleOpenEditNote}>
           <EditIcon />
         </IconButton>
-        <IconButton color="secondary" onClick={handleDeleteNote}>
+        <IconButton onClick={handleDeleteNote}>
           <DeleteIcon />
         </IconButton>
       </ListItem>
+      <Divider />
     </>
   );
 };

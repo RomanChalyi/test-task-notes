@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Container, List, Typography, Box, Button } from '@material-ui/core';
 import Item from './item/Item';
-import { loadNotesList } from './action';
-import { list, listTitle, listContent, listItem } from './notesList.module.scss';
+import { loadNotesList, deleteTournament } from './action';
+import {
+  list,
+  listTitle,
+  listContent,
+  listItem,
+  listEmpty,
+  listButtonCreate,
+} from './notesList.module.scss';
 
 class NotesList extends Component {
   componentDidMount() {
@@ -12,25 +20,39 @@ class NotesList extends Component {
   }
 
   render() {
-    const { notes } = this.props;
+    const { notes, deleteTournament } = this.props;
 
     return (
       <Box className={list}>
         <Container maxWidth="sm">
           <Box className={listTitle}>
-            <Typography align="center" variant="h4">
+            <Typography color="primary" align="center" variant="h4">
               NotesList
             </Typography>
-            <Button variant="contained" color="primary">
+          </Box>
+          <Box className={listContent}>
+            <List component="nav" className={listItem}>
+              {notes &&
+                notes.map((note) => (
+                  <Item note={note} key={note.id} deleteTournament={deleteTournament} />
+                ))}
+              {!notes && (
+                <Typography className={listEmpty} variant="h6">
+                  List of notes is empty
+                </Typography>
+              )}
+            </List>
+          </Box>
+          <Box align="center">
+            <Button
+              component={Link}
+              to="/create"
+              className={listButtonCreate}
+              variant="contained"
+              color="primary"
+            >
               Create
             </Button>
-          </Box>
-
-          <Box className={listContent}>
-            <List component="nav" className={listItem} aria-label="secondary mailbox folders">
-              {notes && notes.map((note) => <Item note={note} key={note.id} />)}
-              {!notes && <p>list of notes is empty</p>}
-            </List>
           </Box>
         </Container>
       </Box>
@@ -38,7 +60,7 @@ class NotesList extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ notes: state.notesList.notes });
-const mapDispatchToProps = { loadNotesList };
+const mapStateToProps = (state) => ({ notes: state.notesList });
+const mapDispatchToProps = { loadNotesList, deleteTournament };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotesList);

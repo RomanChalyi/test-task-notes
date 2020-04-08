@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import Router from './Router';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
-import Loader from '../components/Loader';
+import Loader from '../components/loader/Loader';
 import ErrorMessage from '../components/ErrorMessage';
 import { box } from './app.module.scss';
 

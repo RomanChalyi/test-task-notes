@@ -1,17 +1,23 @@
+@import '../../styles//vars.scss';
 .list {
-  padding: 50px;
+  padding-top: 60px;
   &Title {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     color: white;
-    margin-bottom: 5px;
   }
   &Content {
-    background: white;
+    background: rgb(250, 231, 123);
     border-radius: 10px;
-    overflow: hidden;
+    overflow-x: hidden;
+    height: 60vh;
+    margin: 5px 0;
+    border: 1px solid rgba(0, 0, 0, 0.12);
   }
   &Item {
     padding-top: 0px !important;
+  }
+  &Empty {
+    margin: 10px !important;
   }
 }

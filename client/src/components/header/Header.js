@@ -1,14 +1,17 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Box, Switch } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { AppBar, Toolbar, Box, Switch, Button } from '@material-ui/core';
 import { headerHandler, headerTitle } from './header.module.scss';
 
 export default function ButtonAppBar() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography className={headerTitle} variant="h6">
-          My notes
-        </Typography>
+        <Box className={headerTitle}>
+          <Button component={Link} to="/" variant="text" color="inherit">
+            Go Home
+          </Button>
+        </Box>
         <Box className={headerHandler}>
           <p>EN</p>
           <Switch color="default" />

@@ -1,9 +1,9 @@
 const notes = require('../models/initTable');
 
 module.exports = (req, res) => {
-  const { id } = req.params;
+  const { title, description } = req.body;
   notes
-    .findOne({ where: { id } })
-    .then((note) => res.json(note))
+    .create({ title, description })
+    .then((data) => res.json(data))
     .catch(() => res.status(501).json('Bad request'));
 };

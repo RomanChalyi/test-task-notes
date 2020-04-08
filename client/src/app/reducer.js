@@ -18,7 +18,7 @@ const statuses = (state = initialState, action) => {
       return { ...state, isError: true, errorInfo: action.payload };
     }
     case HIDE_ERROR_MESSAGE: {
-      return { ...state, isError: false, isError: '' };
+      return { ...state, isError: false, errorInfo: '' };
     }
     default: {
       return state;

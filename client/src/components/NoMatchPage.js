@@ -15,7 +15,7 @@ const NoMatchPage = () => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button component={Link} to="/" variant="contained" color="secondary">
+          <Button component={Link} to="/" variant="contained" color="primary">
             Go Home
           </Button>
         </CardActions>

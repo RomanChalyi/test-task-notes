@@ -15,7 +15,9 @@ const initialOptions = {
 const callApi = (path, actionType, requestOptions = {}) => async (dispatch) => {
   const endpoint = `${BASE_URL}${path}`;
   const options = { ...initialOptions, ...requestOptions };
-
+  if (options.body) {
+    options.body = JSON.stringify(options.body);
+  }
   dispatch(loadingStart());
   try {
     const response = await fetch(endpoint, options);
@@ -25,7 +27,7 @@ const callApi = (path, actionType, requestOptions = {}) => async (dispatch) => {
     }
     const data = await response.json();
 
-    return dispatch({ type: actionType, payload: data });
+    return actionType ? dispatch({ type: actionType, payload: data }) : data;
   } catch {
     dispatch(loadingEnd());
     dispatch(showErrorMessage('Server is down'));

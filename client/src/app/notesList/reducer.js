@@ -1,13 +1,9 @@
 import { LOAD_NOTES_LIST_RESULT } from './types';
 
-export const initialState = {
-  notes: null,
-};
-
-const notesList = (state = initialState, action) => {
+const notesList = (state = null, action) => {
   switch (action.type) {
     case LOAD_NOTES_LIST_RESULT: {
-      return { notes: action.payload };
+      return action.payload;
     }
     default: {
       return state;

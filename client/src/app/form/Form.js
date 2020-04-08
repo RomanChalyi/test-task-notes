@@ -1,63 +1,168 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadNoteDetails } from '../noteDetails/action';
-import { Card, InputLabel } from '@material-ui/core';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { Input } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
-import { TextareaAutosize } from '@material-ui/core';
+import { loadNoteData, editNote, clearForm, createNote } from './action';
+import { showErrorMessage } from '../action';
+import { Link } from 'react-router-dom';
+import {
+  Card,
+  InputLabel,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+  Box,
+  Container,
+  TextField,
+} from '@material-ui/core';
+import { form, formContent, formTitle } from './form.styles.scss';
 
 class NoteDetails extends Component {
-  componentDidMount() {
-    const { loadNoteDetails, match } = this.props;
-    const { id } = match.params;
-    loadNoteDetails(`/${id}`);
+  constructor(props) {
+    super(props);
+    this.state = {
+      titleValue: '',
+      descriptionValue: '',
+      isFormClear: 'true',
+    };
   }
-  componentWillUnmount() {
-    // this.props.clearForm();
-  }
-  handleClick = () => () => {
-    const { history } = this.props;
-    history.push('');
-  };
-  render() {
-    const { note } = this.props;
-    if (!note) {
-      return null;
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.note && prevState.isFormClear && !nextProps.isCreateForm) {
+      return {
+        titleValue: nextProps.note.title,
+        descriptionValue: nextProps.note.description,
+        isFormClear: false,
+      };
     }
-    return (
-      <Card>
-        <CardContent>
-          <Typography color="textSecondary" gutterBottom>
-            <Box component="span" color="error.main">
-              *
-            </Box>
-            Title:
-          </Typography>
-          <Input value={note.title} />
-          <Typography color="textSecondary">Description:</Typography>
-        </CardContent>
-        <TextareaAutosize
-          rowsMin="5"
-          style={{ width: '80%' }}
-          variant="filled"
-          value={'testsdfdgadgrafdgdfgdsgdsfffffffffffffffffffffffffffffffffffffffffffffffff'}
-        />
-        <CardActions>
-          <Button size="small" onClick={this.handleClick()}>
-            Save
+    return null;
+  }
+
+  componentDidMount() {
+    const { loadNoteData, match, isCreateForm } = this.props;
+    if (!isCreateForm) {
+      const { id } = match.params;
+      loadNoteData(`/${id}`);
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.clearForm();
+  }
+
+  handleChangeTitle = (e) => {
+    this.setState({ titleValue: e.target.value });
+  };
+
+  handleChangeDetails = (e) => {
+    this.setState({ descriptionValue: e.target.value });
+  };
+
+  handleEditNote = () => {
+    const { showErrorMessage, editNote, match, history } = this.props;
+    const { id } = match.params;
+    const { titleValue, descriptionValue } = this.state;
+    if (titleValue.length < 3) {
+      return showErrorMessage('The title of the note should not be shorter than 3 characters');
+    }
+    if (titleValue.length > 50) {
+      return showErrorMessage(
+        'The title of the note should not be must not be longer than 30 characters'
+      );
+    }
+
+    editNote(id, titleValue, descriptionValue, history);
+  };
+  handleCreateNote = () => {
+    const { showErrorMessage, createNote, history } = this.props;
+    const { titleValue, descriptionValue } = this.state;
+    if (titleValue.length < 3) {
+      return showErrorMessage('The title of the note should not be shorter than 3 characters');
+    }
+    if (titleValue.length > 50) {
+      return showErrorMessage(
+        'The title of the note should not be must not be longer than 30 characters'
+      );
+    }
+
+    createNote(titleValue, descriptionValue, history);
+  };
+
+  render() {
+    const { isCreateForm, isDetailsForm } = this.props;
+    const { titleValue, descriptionValue } = this.state;
+    const renderButton = () => {
+      if (isCreateForm) {
+        return (
+          <Button size="small" variant="contained" color="primary" onClick={this.handleCreateNote}>
+            create
           </Button>
-        </CardActions>
-      </Card>
+        );
+      }
+      if (isDetailsForm) {
+        return (
+          <Button component={Link} to="/" size="small" variant="contained" color="primary">
+            ok
+          </Button>
+        );
+      }
+      return (
+        <Button size="small" variant="contained" color="primary" onClick={this.handleEditNote}>
+          save
+        </Button>
+      );
+    };
+
+    return (
+      <Container style={{ paddingTop: '60px' }} className={form} maxWidth="sm">
+        <Card>
+          <CardContent className={formContent}>
+            <InputLabel className={formTitle} htmlFor="event-title">
+              Title
+              <Box component="span" color="error.main">
+                *
+              </Box>
+            </InputLabel>
+            <TextField
+              className={'MuiInputBase-input.Mui-disabled'}
+              onChange={this.handleChangeTitle}
+              value={titleValue}
+              disabled={isDetailsForm}
+              id="form-title"
+              fullWidth
+              variant="outlined"
+            />
+
+            <Typography style={{ margin: '20px 0px 5px' }} color="textSecondary">
+              Description
+            </Typography>
+            <TextField
+              value={descriptionValue}
+              onChange={this.handleChangeDetails}
+              disabled={isDetailsForm}
+              fullWidth
+              id="form-description"
+              multiline
+              rows="13"
+              variant="outlined"
+            />
+          </CardContent>
+
+          <CardActions style={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
+            {renderButton()}
+
+            {isDetailsForm || (
+              <Button component={Link} to="/" size="small" variant="contained" color="secondary">
+                cancel
+              </Button>
+            )}
+          </CardActions>
+        </Card>
+      </Container>
     );
   }
 }
 
-const mapStateToProps = (state) => ({ note: state.noteDetails });
-const mapDispatchToProps = { loadNoteDetails };
+const mapStateToProps = (state) => ({ note: state.noteData });
+const mapDispatchToProps = { loadNoteData, editNote, clearForm, createNote, showErrorMessage };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteDetails);
