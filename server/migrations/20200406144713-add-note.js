@@ -28,12 +28,12 @@ exports.up = function (db, callback) {
         title: {
           type: type.STRING,
           length: 50,
-          notNull: true,
           defaultValue: 'none',
         },
         description: {
           type: type.STRING,
           length: '1000',
+          defaultValue: 'none',
         },
       },
       ifNotExists: true,
@@ -41,9 +41,9 @@ exports.up = function (db, callback) {
     callback
   ).then(() => {
     db.runSql(
-      `INSERT INTO note (title) values('make a test task');
-       INSERT INTO note (title) values('save the world');
-       INSERT INTO note (title) values('eat a sandwich')`,
+      `INSERT INTO note (title, description) values('Make a test task', 'no problems');
+       INSERT INTO note (title, description) values('Save the world', 'invent a vaccine against COVID19');
+       INSERT INTO note (title) values('Eat a sandwich')`,
       [],
       callback
     );

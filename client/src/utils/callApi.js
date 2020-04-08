@@ -19,13 +19,15 @@ const callApi = (path, actionType, requestOptions = {}) => async (dispatch) => {
   dispatch(loadingStart());
   try {
     const response = await fetch(endpoint, options);
-    if (response.status === 500) {
-      return dispatch(showErrorMessage('Server is down'));
+    dispatch(loadingEnd());
+    if (response.status === 501) {
+      return dispatch(showErrorMessage('Oops... Something went wrong!'));
     }
     const data = await response.json();
-    dispatch(loadingEnd());
+
     return dispatch({ type: actionType, payload: data });
   } catch {
+    dispatch(loadingEnd());
     dispatch(showErrorMessage('Server is down'));
   }
 };

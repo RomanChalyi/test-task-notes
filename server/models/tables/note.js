@@ -12,13 +12,14 @@ module.exports = function(sequelize, DataTypes) {
     },
     'title': {
       type: DataTypes.STRING(50),
-      allowNull: false,
+      allowNull: true,
       defaultValue: 'none',
       comment: "null"
     },
     'description': {
       type: DataTypes.STRING(1000),
       allowNull: true,
+      defaultValue: 'none',
       comment: "null"
     }
   }, {

@@ -1,0 +1,17 @@
+.list {
+  padding: 50px;
+  &Title {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    margin-bottom: 5px;
+  }
+  &Content {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  &Item {
+    padding-top: 0px !important;
+  }
+}

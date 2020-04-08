@@ -1,30 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Divider, List } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
+import { Container, List, Typography, Box, Button } from '@material-ui/core';
 import Item from './item/Item';
 import { loadNotesList } from './action';
+import { list, listTitle, listContent, listItem } from './notesList.module.scss';
 
 class NotesList extends Component {
   componentDidMount() {
     const { loadNotesList } = this.props;
     loadNotesList();
   }
+
   render() {
     const { notes } = this.props;
 
     return (
-      <Container maxWidth="sm">
-        <p style={{ margin: '0px', textAlign: 'center' }}>NotesList</p>
-        <Divider />
-        <Box style={{ background: 'white' }}>
-          <List component="nav" aria-label="secondary mailbox folders">
-            {notes && notes.map((note) => <Item note={note} key={note.id} />)}
-            {!notes && <p>list of notes is empty</p>}
-          </List>
-        </Box>
-        <Divider />
-      </Container>
+      <Box className={list}>
+        <Container maxWidth="sm">
+          <Box className={listTitle}>
+            <Typography align="center" variant="h4">
+              NotesList
+            </Typography>
+            <Button variant="contained" color="primary">
+              Create
+            </Button>
+          </Box>
+
+          <Box className={listContent}>
+            <List component="nav" className={listItem} aria-label="secondary mailbox folders">
+              {notes && notes.map((note) => <Item note={note} key={note.id} />)}
+              {!notes && <p>list of notes is empty</p>}
+            </List>
+          </Box>
+        </Container>
+      </Box>
     );
   }
 }
