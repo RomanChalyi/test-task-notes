@@ -15,6 +15,7 @@ import {
   TextField,
 } from '@material-ui/core';
 import { form, formContent, formTitle } from './form.styles.scss';
+import { withTranslation } from 'react-i18next';
 
 class NoteDetails extends Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class NoteDetails extends Component {
     }
     if (titleValue.length > 50) {
       return showErrorMessage(
-        'The title of the note should not be must not be longer than 30 characters'
+        'The title of the note should not be must not be longer than 50 characters'
       );
     }
 
@@ -80,7 +81,7 @@ class NoteDetails extends Component {
     }
     if (titleValue.length > 50) {
       return showErrorMessage(
-        'The title of the note should not be must not be longer than 30 characters'
+        'The title of the note should not be must not be longer than 50 characters'
       );
     }
 
@@ -88,13 +89,13 @@ class NoteDetails extends Component {
   };
 
   render() {
-    const { isCreateForm, isDetailsForm } = this.props;
+    const { isCreateForm, isDetailsForm, t } = this.props;
     const { titleValue, descriptionValue } = this.state;
     const renderButton = () => {
       if (isCreateForm) {
         return (
           <Button size="small" variant="contained" color="primary" onClick={this.handleCreateNote}>
-            create
+            {t('create.1')}
           </Button>
         );
       }
@@ -107,7 +108,7 @@ class NoteDetails extends Component {
       }
       return (
         <Button size="small" variant="contained" color="primary" onClick={this.handleEditNote}>
-          save
+          {t('save.1')}
         </Button>
       );
     };
@@ -117,7 +118,7 @@ class NoteDetails extends Component {
         <Card>
           <CardContent className={formContent}>
             <InputLabel className={formTitle} htmlFor="event-title">
-              Title
+              {t('Title.1')}
               <Box component="span" color="error.main">
                 *
               </Box>
@@ -133,7 +134,7 @@ class NoteDetails extends Component {
             />
 
             <Typography style={{ margin: '20px 0px 5px' }} color="textSecondary">
-              Description
+              {t('Description.1')}
             </Typography>
             <TextField
               value={descriptionValue}
@@ -150,9 +151,9 @@ class NoteDetails extends Component {
           <CardActions style={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
             {renderButton()}
 
-            {isDetailsForm || (
+            {!isDetailsForm && (
               <Button component={Link} to="/" size="small" variant="contained" color="secondary">
-                cancel
+                {t('cancel.1')}
               </Button>
             )}
           </CardActions>
@@ -165,4 +166,4 @@ class NoteDetails extends Component {
 const mapStateToProps = (state) => ({ note: state.noteData });
 const mapDispatchToProps = { loadNoteData, editNote, clearForm, createNote, showErrorMessage };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NoteDetails);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(NoteDetails));

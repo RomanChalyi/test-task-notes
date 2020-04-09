@@ -22,7 +22,7 @@ const callApi = (path, actionType, requestOptions = {}) => async (dispatch) => {
   try {
     const response = await fetch(endpoint, options);
     dispatch(loadingEnd());
-    if (response.status === 501) {
+    if (response.status !== 200) {
       return dispatch(showErrorMessage('Oops... Something went wrong!'));
     }
     const data = await response.json();

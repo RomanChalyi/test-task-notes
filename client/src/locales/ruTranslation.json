@@ -1,0 +1,48 @@
+{
+  "My Notes": { "1": "мои заметки" },
+  "version": {
+    "1": "версия"
+  },
+  "The title of the note should not be shorter than 3 characters": {
+    "1": "Заголовок не должен быть короче 3 символов"
+  },
+  "The title of the note should not be must not be longer than 50 characters": {
+    "1": "Заголовок не должен быть  длинее 50 символов"
+  },
+  "Oops... Something went wrong!": {
+    "1": "Упс... что-то пошло не так!"
+  },
+  "Server is down": {
+    "1": "Сервер не запущен "
+  },
+  "Page not found": {
+    "1": "Страница не найдена"
+  },
+  "Maybe the page you are looking for has been removed, or you typed in the wrong URL": {
+    "1": "Возможно, страница, которую вы ищете, была удалена, или вы ввели неправильный URL"
+  },
+  "Go Home": {
+    "1": "домой"
+  },
+  "create": {
+    "1": "создать"
+  },
+  "save": {
+    "1": "сохранить"
+  },
+  "Title": {
+    "1": "Заголовок"
+  },
+  "Description": {
+    "1": "Описание"
+  },
+  "cancel": {
+    "1": "Отмена"
+  },
+  "Notes List": {
+    "1": "Список заметок"
+  },
+  "List of notes is empty": {
+    "1": "Список заметок пуст"
+  }
+}

@@ -1,9 +1,16 @@
-import { LOADING_START, LOADING_END, SHOW_ERROR_MESSAGE, HIDE_ERROR_MESSAGE } from './types';
+import {
+  LOADING_START,
+  LOADING_END,
+  SHOW_ERROR_MESSAGE,
+  HIDE_ERROR_MESSAGE,
+  SET_LANGUAGE,
+} from './types';
 
 export const initialState = {
   isLoading: false,
   isError: false,
   errorInfo: '',
+  lang: 'en',
 };
 
 const statuses = (state = initialState, action) => {
@@ -19,6 +26,9 @@ const statuses = (state = initialState, action) => {
     }
     case HIDE_ERROR_MESSAGE: {
       return { ...state, isError: false, errorInfo: '' };
+    }
+    case SET_LANGUAGE: {
+      return { ...state, lang: action.lang };
     }
     default: {
       return state;

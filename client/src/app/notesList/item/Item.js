@@ -4,13 +4,13 @@ import { ListItem, Divider, ListItemText, IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const Notes = ({ note, deleteTournament }) => {
+const Notes = ({ note, deleteNote }) => {
   const { title, id } = note;
   const history = useHistory();
   const handleClick = () => history.push(`/details/${id}`);
   const handleOpenEditNote = () => history.push(`/edit/${id}`);
   const handleDeleteNote = () => {
-    deleteTournament(id);
+    deleteNote(id);
   };
 
   return (
