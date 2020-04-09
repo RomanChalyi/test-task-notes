@@ -2,7 +2,7 @@
 
 ## Database
 
-project uses MySQL Database.
+This application use MySQL database.
 install MySQL if necessary
 (installation details:
 
