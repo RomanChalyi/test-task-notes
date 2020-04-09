@@ -21,18 +21,18 @@ class NoteDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      titleValue: '',
-      descriptionValue: '',
-      isFormClear: 'true',
+      title: '',
+      description: '',
+      isEmptyForm: 'true',
     };
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.note && prevState.isFormClear && !nextProps.isCreateForm) {
+    if (nextProps.note && prevState.isEmptyForm && !nextProps.isCreateForm) {
       return {
-        titleValue: nextProps.note.title,
-        descriptionValue: nextProps.note.description,
-        isFormClear: false,
+        title: nextProps.note.title,
+        description: nextProps.note.description,
+        isEmptyForm: false,
       };
     }
     return null;
@@ -51,80 +51,78 @@ class NoteDetails extends Component {
   }
 
   handleChangeTitle = (e) => {
-    this.setState({ titleValue: e.target.value });
+    this.setState({ title: e.target.value });
   };
 
   handleChangeDetails = (e) => {
-    this.setState({ descriptionValue: e.target.value });
+    this.setState({ description: e.target.value });
   };
 
   handleEditNote = () => {
     const { showErrorMessage, editNote, match, history } = this.props;
     const { id } = match.params;
-    const { titleValue, descriptionValue } = this.state;
-    if (titleValue.length < 3) {
-      return showErrorMessage('The title of the note should not be shorter than 3 characters');
+    const { title, description } = this.state;
+    if (title.length < 3) {
+      return showErrorMessage('Error.smallString');
     }
-    if (titleValue.length > 50) {
-      return showErrorMessage(
-        'The title of the note should not be must not be longer than 50 characters'
-      );
+    if (title.length > 50) {
+      return showErrorMessage('Error.bigString');
     }
 
-    editNote(id, titleValue, descriptionValue, history);
+    editNote(id, title, description, history);
   };
   handleCreateNote = () => {
     const { showErrorMessage, createNote, history } = this.props;
-    const { titleValue, descriptionValue } = this.state;
-    if (titleValue.length < 3) {
-      return showErrorMessage('The title of the note should not be shorter than 3 characters');
+    const { title, description } = this.state;
+    if (title.length < 3) {
+      return showErrorMessage('Error.smallString');
     }
-    if (titleValue.length > 50) {
-      return showErrorMessage(
-        'The title of the note should not be must not be longer than 50 characters'
-      );
+    if (title.length > 50) {
+      return showErrorMessage('Error.bigString');
     }
 
-    createNote(titleValue, descriptionValue, history);
+    createNote(title, description, history);
+  };
+
+  renderButton = () => {
+    const { isCreateForm, isDetailsForm, t } = this.props;
+    if (isCreateForm) {
+      return (
+        <Button
+          aria-label="create"
+          size="small"
+          variant="contained"
+          color="primary"
+          onClick={this.handleCreateNote}
+        >
+          {t('Form.create')}
+        </Button>
+      );
+    }
+    if (isDetailsForm) {
+      return (
+        <Button component={Link} to="/" size="small" variant="contained" color="primary">
+          ok
+        </Button>
+      );
+    }
+    return (
+      <Button size="small" variant="contained" color="primary" onClick={this.handleEditNote}>
+        {t('Form.save')}
+      </Button>
+    );
   };
 
   render() {
-    const { isCreateForm, isDetailsForm, t } = this.props;
-    const { titleValue, descriptionValue } = this.state;
-    const renderButton = () => {
-      if (isCreateForm) {
-        return (
-          <Button
-            aria-label="create"
-            size="small"
-            variant="contained"
-            color="primary"
-            onClick={this.handleCreateNote}
-          >
-            {t('create.1')}
-          </Button>
-        );
-      }
-      if (isDetailsForm) {
-        return (
-          <Button component={Link} to="/" size="small" variant="contained" color="primary">
-            ok
-          </Button>
-        );
-      }
-      return (
-        <Button size="small" variant="contained" color="primary" onClick={this.handleEditNote}>
-          {t('save.1')}
-        </Button>
-      );
-    };
+    const { title, description } = this.state;
+    const { isDetailsForm, t } = this.props;
 
     return (
       <Container style={{ paddingTop: '60px' }} className={form} maxWidth="sm">
         <Card>
           <CardContent className={formContent}>
             <InputLabel className={formTitle} htmlFor="event-title">
-              {t('Title.1')}
+              {t('Form.title')}
               <Box component="span" color="error.main">
                 *
               </Box>
@@ -132,7 +130,7 @@ class NoteDetails extends Component {
             <TextField
               className={'MuiInputBase-input.Mui-disabled'}
               onChange={this.handleChangeTitle}
-              value={titleValue}
+              value={title}
               disabled={isDetailsForm}
               id="form-title"
               fullWidth
@@ -140,10 +138,10 @@ class NoteDetails extends Component {
             />
 
             <Typography style={{ margin: '20px 0px 5px' }} color="textSecondary">
-              {t('Description.1')}
+              {t('Form.description')}
             </Typography>
             <TextField
-              value={descriptionValue}
+              value={description}
               onChange={this.handleChangeDetails}
               disabled={isDetailsForm}
               fullWidth
@@ -155,11 +153,11 @@ class NoteDetails extends Component {
           </CardContent>
 
           <CardActions style={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
-            {renderButton()}
+            {this.renderButton()}
 
             {!isDetailsForm && (
               <Button component={Link} to="/" size="small" variant="contained" color="secondary">
-                {t('cancel.1')}
+                {t('Form.cancel')}
               </Button>
             )}
           </CardActions>

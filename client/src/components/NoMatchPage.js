@@ -10,17 +10,13 @@ const NoMatchPage = () => {
       <Card>
         <CardContent>
           <Typography variant="h3" component="h1" gutterBottom>
-            {t('Page not found.1')}
+            {t('404.title')}
           </Typography>
-          <Typography variant="subtitle1">
-            {t(
-              'Maybe the page you are looking for has been removed, or you typed in the wrong URL.1'
-            )}
-          </Typography>
+          <Typography variant="subtitle1">{t('404.description')}</Typography>
         </CardContent>
         <CardActions>
           <Button component={Link} to="/" variant="contained" color="primary">
-            {t('Go Home.1')}
+            {t('404.link')}
           </Button>
         </CardActions>
       </Card>

@@ -28,7 +28,7 @@ class NotesList extends Component {
         <Container maxWidth="sm">
           <Box className={listTitle}>
             <Typography color="primary" align="center" variant="h4">
-              {t('Notes List.1')}
+              {t('List.title')}
             </Typography>
           </Box>
           <Box className={listContent}>
@@ -37,7 +37,7 @@ class NotesList extends Component {
                 notes.map((note) => <Item note={note} key={note.id} deleteNote={deleteNote} />)}
               {notes.length === 0 && (
                 <Typography className={listEmpty} variant="h6">
-                  {t('List of notes is empty.1')}
+                  {t('List.empty')}
                 </Typography>
               )}
             </List>
@@ -50,7 +50,7 @@ class NotesList extends Component {
               variant="contained"
               color="primary"
             >
-              {t('create.1')}
+              {t('List.create')}
             </Button>
           </Box>
         </Container>

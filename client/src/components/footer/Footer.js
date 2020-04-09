@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <Box className={footer}>
       <Typography variant="h6" className={footerText}>
-        {t('version.1')} : 0.0.1
+        {t('Footer.version')}
       </Typography>
     </Box>
   );

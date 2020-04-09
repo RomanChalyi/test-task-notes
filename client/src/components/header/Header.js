@@ -18,7 +18,7 @@ const Header = ({ lang, setLanguage }) => {
       <Toolbar>
         <Box className={headerTitle}>
           <Button component={Link} to="/" variant="text" color="inherit">
-            {t('My Notes.1')}
+            {t('Header.link')}
           </Button>
         </Box>
         <Box className={headerHandler}>

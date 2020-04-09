@@ -1,24 +1,31 @@
 {
-  "My Notes": { "1": "My Notes" },
-  "version": { "1": "version" },
-  "The title of the note should not be shorter than 3 characters": {
-    "1": "The title of the note should not be shorter than 3 characters"
+  "Header": {
+    "link": "my notes"
   },
-  "The title of the note should not be must not be longer than 50 characters": {
-    "1": "The title of the note should not be must not be longer than 50 characters"
+  "Footer": {
+    "version": "version : 0.0.1"
   },
-  "Oops... Something went wrong!": { "1": "Oops... Something went wrong!" },
-  "Server is down": { "1": "Server is down" },
-  "Page not found": { "1": "Page not found" },
-  "Maybe the page you are looking for has been removed, or you typed in the wrong URL": {
-    "1": "Maybe the page you are looking for has been removed, or you typed in the wrong URL"
+  "Error": {
+    "smallString": "The title of the note should not be shorter than 3 characters!",
+    "bigString": "The title of the note should not be must not be longer than 50 characters!",
+    "default": "Oops... Something went wrong!",
+    "server": "Server is down!"
   },
-  "Go Home": { "1": "Go Home" },
-  "create": { "1": "create" },
-  "save": { "1": "save" },
-  "Title": { "1": "Title" },
-  "Description": { "1": "Description" },
-  "cancel": { "1": "cancel" },
-  "Notes List": { "1": "Notes List" },
-  "List of notes is empty": { "1": "List of notes is empty" }
+  "404": {
+    "title": "Page not found!",
+    "description": "Maybe the page you are looking for has been removed, or you typed in the wrong URL!",
+    "link": "Go Home"
+  },
+  "Form": {
+    "create": "create",
+    "save": "save",
+    "title": "Title",
+    "description": "Description",
+    "cancel": "cancel"
+  },
+  "List": {
+    "title": "Notes List",
+    "empty": "List of notes is empty",
+    "create": "create"
+  }
 }

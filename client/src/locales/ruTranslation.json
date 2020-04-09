@@ -1,48 +1,31 @@
 {
-  "My Notes": { "1": "мои заметки" },
-  "version": {
-    "1": "версия"
+  "Header": {
+    "link": "мои заметки"
   },
-  "The title of the note should not be shorter than 3 characters": {
-    "1": "Заголовок не должен быть короче 3 символов"
+  "Footer": {
+    "version": "версия : 0.0.1"
   },
-  "The title of the note should not be must not be longer than 50 characters": {
-    "1": "Заголовок не должен быть  длинее 50 символов"
+  "Error": {
+    "smallString": "Заголовок не должен быть короче 3 символов!",
+    "bigString": "Заголовок не должен быть  длинее 50 символов!",
+    "default": "Упс... что-то пошло не так!",
+    "server": "Сервер не запущен!"
   },
-  "Oops... Something went wrong!": {
-    "1": "Упс... что-то пошло не так!"
+  "404": {
+    "title": "Страница не найдена",
+    "description": "Возможно, страница, которую вы ищете, была удалена, или вы ввели неправильный URL",
+    "link": "домой"
   },
-  "Server is down": {
-    "1": "Сервер не запущен "
+  "Form": {
+    "create": "создать",
+    "save": "сохранить",
+    "title": "Заголовок",
+    "description": "Описание",
+    "cancel": "Отмена"
   },
-  "Page not found": {
-    "1": "Страница не найдена"
-  },
-  "Maybe the page you are looking for has been removed, or you typed in the wrong URL": {
-    "1": "Возможно, страница, которую вы ищете, была удалена, или вы ввели неправильный URL"
-  },
-  "Go Home": {
-    "1": "домой"
-  },
-  "create": {
-    "1": "создать"
-  },
-  "save": {
-    "1": "сохранить"
-  },
-  "Title": {
-    "1": "Заголовок"
-  },
-  "Description": {
-    "1": "Описание"
-  },
-  "cancel": {
-    "1": "Отмена"
-  },
-  "Notes List": {
-    "1": "Список заметок"
-  },
-  "List of notes is empty": {
-    "1": "Список заметок пуст"
+  "List": {
+    "title": "Список заметок",
+    "empty": "Список заметок пуст",
+    "create": "создать"
   }
 }

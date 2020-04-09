@@ -18,7 +18,7 @@ const ErrorMessage = ({ isError, errorInfo, hideErrorMessage }) => {
       <SnackbarContent
         style={{ background: 'red' }}
         aria-describedby="client-snackbar"
-        message={t(`${errorInfo}.1`)}
+        message={t(errorInfo)}
         action={[
           <IconButton key="close" aria-label="close" color="inherit" onClick={hideErrorMessage}>
             <CloseIcon />
