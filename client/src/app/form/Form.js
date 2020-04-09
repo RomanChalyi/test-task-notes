@@ -94,7 +94,13 @@ class NoteDetails extends Component {
     const renderButton = () => {
       if (isCreateForm) {
         return (
-          <Button size="small" variant="contained" color="primary" onClick={this.handleCreateNote}>
+          <Button
+            aria-label="create"
+            size="small"
+            variant="contained"
+            color="primary"
+            onClick={this.handleCreateNote}
+          >
             {t('create.1')}
           </Button>
         );

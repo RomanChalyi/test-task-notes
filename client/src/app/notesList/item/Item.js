@@ -27,7 +27,7 @@ const Notes = ({ note, deleteNote }) => {
         <IconButton color="primary" onClick={handleOpenEditNote}>
           <EditIcon />
         </IconButton>
-        <IconButton onClick={handleDeleteNote}>
+        <IconButton aria-label="delete" onClick={handleDeleteNote}>
           <DeleteIcon />
         </IconButton>
       </ListItem>

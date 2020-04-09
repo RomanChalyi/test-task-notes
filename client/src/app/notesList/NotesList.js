@@ -32,10 +32,10 @@ class NotesList extends Component {
             </Typography>
           </Box>
           <Box className={listContent}>
-            <List component="nav" className={listItem}>
+            <List aria-label="list" component="nav" className={listItem}>
               {notes &&
                 notes.map((note) => <Item note={note} key={note.id} deleteNote={deleteNote} />)}
-              {!notes && (
+              {notes.length === 0 && (
                 <Typography className={listEmpty} variant="h6">
                   {t('List of notes is empty.1')}
                 </Typography>
